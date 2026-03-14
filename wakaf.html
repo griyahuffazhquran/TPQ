@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Meta Tags Dasar -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Halaman konfirmasi pembayaran wakaf pembebasan lahan Griya Huffazh Quran">
+    <meta name="theme-color" content="#047857">
+    
+    <title>Konfirmasi Wakaf - Griya Huffazh Qur'an</title>
+    
+    <!-- FAVICON: Letakkan file 'favicon.png' di folder yang sama dengan file ini -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        
+        .progress-gradient {
+            background: linear-gradient(to right, #10b981, #059669, #047857);
+        }
+        
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            transform: translateX(calc(100% + 40px));
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 200;
+        }
+        
+        .copy-notification.show {
+            transform: translateX(0);
+        }
+        
+        .reveal-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .reveal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(4, 120, 87, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(4, 120, 87, 0); }
+        }
+        
+        .pulse-highlight {
+            animation: pulse-border 2s infinite;
+        }
+        
+        .focus-ring:focus-visible {
+            outline: 3px solid #059669;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 pb-20 overflow-x-hidden">
+
+    <!-- Notification Toast -->
+    <div id="copy-toast" class="copy-notification bg-emerald-600 text-white px-6 py-4 rounded-2xl font-bold shadow-2xl flex items-center gap-3" role="alert">
+        <i data-lucide="check-circle" class="w-6 h-6"></i>
+        <span id="toast-text">Berhasil disalin!</span>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-emerald-800 text-white pt-16 pb-28 px-4 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-700/30 rounded-full -mr-40 -mt-40 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-emerald-900/40 rounded-full -ml-20 -mb-20 blur-2xl"></div>
+
+        <div class="max-w-4xl mx-auto relative z-10 text-center md:text-left">
+            <div data-aos="fade-right" data-aos-duration="800">
+                <a href="index.html" class="inline-flex items-center gap-2 text-emerald-100 hover:text-white mb-8 transition-colors group focus-ring rounded-lg p-1">
+                    <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+                    <span class="font-semibold">Kembali ke Beranda</span>
+                </a>
+            </div>
+            
+            <h1 data-aos="fade-up" data-aos-delay="100" class="text-4xl md:text-5xl font-black mb-6 tracking-tight">
+                Informasi Pembayaran
+            </h1>
+            
+            <p data-aos="fade-up" data-aos-delay="200" class="text-emerald-100 text-lg md:text-xl max-w-2xl leading-relaxed opacity-90">
+                Selesaikan wakaf Anda melalui rekening resmi Yayasan Griya Huffazh Quran.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 -mt-20 relative z-10" id="main-content">
+        
+        <!-- Ringkasan Donasi -->
+        <div id="donation-summary" class="hidden mb-8" data-aos="zoom-in">
+            <div class="bg-white rounded-[2.5rem] shadow-2xl shadow-emerald-900/10 border-2 border-emerald-500 overflow-hidden pulse-highlight">
+                <div class="p-8 md:p-10 text-center">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-black uppercase tracking-widest mb-4">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                        Nominal Terpilih
+                    </div>
+                    <p class="text-slate-500 font-medium mb-2">Anda akan berwakaf sebesar:</p>
+                    <p class="text-4xl md:text-5xl font-black text-emerald-700 mb-4" id="display-amount">Rp 0</p>
+                    <p class="text-xs text-slate-400">Pastikan nominal transfer sesuai dengan di atas untuk memudahkan verifikasi.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Waspada Penipuan -->
+        <div data-aos="zoom-in" data-aos-duration="1000" class="mb-10 bg-red-50 border-2 border-red-200 rounded-[2.5rem] p-6 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-xl">
+            <div class="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center text-white shrink-0">
+                <i data-lucide="shield-alert" class="w-8 h-8"></i>
+            </div>
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-black text-red-700 mb-2 uppercase tracking-tight flex items-center justify-center md:justify-start gap-2">
+                    Waspada Penipuan!
+                </h3>
+                <p class="text-red-700 font-medium leading-relaxed mb-4">
+                    Mohon berhati-hati. Rekening resmi wakaf pembebasan lahan <strong>HANYA</strong> atas nama:
+                </p>
+                <div class="inline-block bg-white border-2 border-red-300 px-6 py-3 rounded-2xl shadow-sm">
+                    <p class="text-red-900 font-black flex items-center gap-2 uppercase tracking-wide">
+                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                        GRIYA HUFFAZH QURAN
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daftar Rekening -->
+        <div class="space-y-6">
+            <div data-aos="fade-up" data-aos-delay="300" class="reveal-card bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/60 border border-slate-100 overflow-hidden">
+                <div class="p-8 md:p-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                        <div class="space-y-4 flex-1">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                                Rekening Utama
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-extrabold text-slate-800 mb-1">Bank Syariah Indonesia (BSI)</h3>
+                                <p class="text-slate-500 font-medium text-sm">Kode Bank: <span class="font-bold text-slate-700">451</span></p>
+                            </div>
+                            <div class="pt-2">
+                                <p class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-1">Nomor Rekening</p>
+                                <p class="text-3xl md:text-4xl font-mono font-black text-slate-900 tracking-wide">7770919198</p>
+                                <p class="text-slate-500 font-bold mt-3 uppercase tracking-tight text-sm flex items-center gap-2">
+                                    <i data-lucide="user" class="w-4 h-4"></i>
+                                    A.N. GRIYA HUFFAZH QURAN
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <button onclick="copyToClipboard('7770919198', 'Nomor rekening')" class="flex items-center justify-center gap-3 px-8 py-5 bg-slate-900 text-white rounded-[1.5rem] font-black hover:bg-emerald-700 transition-all shadow-lg active:scale-95 shrink-0 group focus-ring">
+                            <i data-lucide="copy" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+                            Salin Nomor
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QRIS Section -->
+        <div data-aos="fade-up" data-aos-delay="100" class="mt-12 bg-white rounded-[3rem] p-8 md:p-16 border border-slate-100 text-center shadow-2xl shadow-slate-200/50 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"></div>
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-black uppercase mb-6">
+                <i data-lucide="scan" class="w-4 h-4"></i>
+                Pembayaran Cepat (QRIS)
+            </div>
+            
+            <h3 class="text-2xl md:text-3xl font-black text-slate-800 mb-8 tracking-tight">Scan dengan E-Wallet</h3>
+            
+            <div class="max-w-[280px] mx-auto p-4 bg-white rounded-[2rem] border-2 border-slate-100 shadow-inner mb-8">
+                <div class="aspect-square w-full bg-slate-50 rounded-[1.5rem] flex items-center justify-center p-4 border border-slate-200 overflow-hidden">
+                    <!-- Ganti dengan QRIS asli Anda -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=00020101021126570011ID.DANA.WWW011893600915312345678902091234567890303UMI51440014ID.CO.QRIS.WWW0215ID10212345678900303UMI5204481453033605802ID5913GRIYA HUFFAZH6007JAKARTA61051234562070703A0163049A6B" alt="QRIS Griya Huffazh" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://via.placeholder.com/250x250/e2e8f0/475569?text=QRIS+Tidak+Tersedia';">
+                </div>
+            </div>
+            
+            <p class="text-slate-500 font-medium max-w-md mx-auto leading-relaxed">
+                Scan QRIS menggunakan GoPay, OVO, DANA, ShopeePay, atau aplikasi m-Banking Anda.
+            </p>
+        </div>
+
+        <!-- Petunjuk Konfirmasi -->
+        <div class="mt-24">
+            <h2 data-aos="fade-right" class="text-2xl font-black text-slate-800 flex items-center gap-3 mb-10 justify-center md:justify-start">
+                <span class="bg-emerald-100 text-emerald-700 p-2 rounded-xl">
+                    <i data-lucide="info" class="w-6 h-6"></i>
+                </span>
+                Langkah Konfirmasi
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div data-aos="fade-up" data-aos-delay="100" class="relative p-8 bg-white rounded-[2rem] border border-slate-100 shadow-sm text-center md:text-left hover:border-emerald-200 transition-all group">
+                    <span class="absolute -top-4 left-8 w-10 h-10 bg-emerald-700 text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg group-hover:scale-110 transition-transform">1</span>
+                    <h4 class="font-black text-slate-800 text-lg mb-3 mt-3">Transfer</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Transfer sesuai nominal ke rekening di atas.</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="relative p-8 bg-white rounded-[2rem] border border-slate-100 shadow-sm text-center md:text-left hover:border-emerald-200 transition-all group">
+                    <span class="absolute -top-4 left-8 w-10 h-10 bg-emerald-700 text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg group-hover:scale-110 transition-transform">2</span>
+                    <h4 class="font-black text-slate-800 text-lg mb-3 mt-3">Bukti Transfer</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Simpan screenshot atau struk transfer Anda.</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="300" class="relative p-8 bg-white rounded-[2rem] border border-slate-100 shadow-sm text-center md:text-left hover:border-emerald-200 transition-all group">
+                    <span class="absolute -top-4 left-8 w-10 h-10 bg-emerald-700 text-white rounded-xl flex items-center justify-center font-black text-lg shadow-lg group-hover:scale-110 transition-transform">3</span>
+                    <h4 class="font-black text-slate-800 text-lg mb-3 mt-3">Konfirmasi</h4>
+                    <p class="text-slate-500 text-sm leading-relaxed">Kirim bukti via tombol WhatsApp di bawah.</p>
+                </div>
+            </div>
+
+            <!-- WhatsApp Confirmation -->
+            <div data-aos="zoom-in" data-aos-delay="400" class="mt-16 bg-gradient-to-br from-emerald-800 to-slate-900 rounded-[3.5rem] p-10 md:p-16 text-center shadow-2xl text-white relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+                
+                <div class="relative z-10">
+                    <div class="inline-block p-4 bg-white/10 rounded-full mb-6">
+                        <i data-lucide="message-circle" class="w-10 h-10 text-emerald-300"></i>
+                    </div>
+                    
+                    <h3 class="text-3xl md:text-4xl font-black mb-4">Konfirmasi Wakaf</h3>
+                    <p class="text-emerald-100 mb-10 max-w-lg mx-auto text-lg opacity-90">
+                        Klik tombol di bawah untuk mengirim bukti transfer dan memastikan wakaf Anda tercatat.
+                    </p>
+                    
+                    <a id="wa-link" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-4 px-12 py-6 bg-[#25D366] text-white rounded-[2rem] font-black text-xl hover:scale-105 transition-all shadow-2xl shadow-green-900/40 active:scale-95 group focus-ring">
+                        <i data-lucide="send" class="w-7 h-7 group-hover:translate-x-1 transition-transform"></i>
+                        Kirim via WhatsApp
+                    </a>
+                    
+                    <p class="text-emerald-300/80 text-sm mt-6 font-medium">
+                        Admin akan memverifikasi dalam 1x24 jam
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Badge -->
+        <div data-aos="fade-up" class="mt-24 flex flex-col items-center text-center gap-6">
+            <div class="flex items-center gap-3 text-emerald-700 font-black text-lg bg-emerald-50 px-6 py-3 rounded-2xl border border-emerald-100">
+                <i data-lucide="shield-check" class="w-6 h-6"></i>
+                Donasi Aman & Terpercaya
+            </div>
+            <p class="text-slate-400 text-sm max-w-md leading-relaxed">
+                Seluruh dana wakaf dikelola secara amanah oleh pengurus Griya Huffazh Quran.
+            </p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-24 py-12 border-t border-slate-200 text-center bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-2 mb-2">
+                <img src="favicon.png" alt="Logo" class="w-8 h-8 rounded-full object-cover">
+                <span class="text-lg font-bold text-slate-900">Griya Huffazh Quran</span>
+            </div>
+            <p class="text-slate-400 text-sm">&copy; 2024 Seluruh hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
+        lucide.createIcons();
+
+        const CONFIG = {
+            phoneNumber: "6282184570006",
+            defaultAmount: 0,
+            bankAccount: "7770919198"
+        };
+
+        function formatRupiah(num) {
+            if (isNaN(num) || num === null || num === 0) return 'Rp 0';
+            return 'Rp ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function parseAmount(str) {
+            if (!str) return 0;
+            return parseInt(str.replace(/\D/g, ''), 10) || 0;
+        }
+
+        async function copyToClipboard(text, label = 'Teks') {
+            try {
+                await navigator.clipboard.writeText(text);
+                showToast(`${label} berhasil disalin!`);
+            } catch (err) {
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast(`${label} berhasil disalin!`);
+                } catch (e) {
+                    showToast('Gagal menyalin', 'error');
+                }
+                document.body.removeChild(textarea);
+            }
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('copy-toast');
+            const toastText = document.getElementById('toast-text');
+            toast.classList.remove('bg-emerald-600', 'bg-red-500');
+            toast.classList.add(type === 'success' ? 'bg-emerald-600' : 'bg-red-500');
+            toastText.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function getDonationAmount() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlAmount = urlParams.get('amount');
+            if (urlAmount) {
+                const amount = parseAmount(urlAmount);
+                if (amount > 0) return amount;
+            }
+            try {
+                const storedAmount = sessionStorage.getItem('wakaf_amount');
+                if (storedAmount) {
+                    const amount = parseInt(storedAmount, 10);
+                    if (amount > 0) return amount;
+                }
+            } catch (e) {
+                console.warn('SessionStorage tidak tersedia');
+            }
+            return CONFIG.defaultAmount;
+        }
+
+        function initializePage() {
+            const amount = getDonationAmount();
+            const summaryEl = document.getElementById('donation-summary');
+            const displayAmountEl = document.getElementById('display-amount');
+            const waLinkEl = document.getElementById('wa-link');
+
+            if (amount > 0) {
+                summaryEl.classList.remove('hidden');
+                displayAmountEl.textContent = formatRupiah(amount);
+
+                const message = `Assalamu'alaikum Warahmatullahi Wabarakatuh, Admin Griya Huffazh Quran.
+
+Saya ingin mengonfirmasi Wakaf Pembebasan Lahan dengan rincian:
+
+📌 *Nominal:* ${formatRupiah(amount)}
+📌 *Nama:* [Isi Nama Lengkap]
+📌 *Alamat:* [Isi Alamat]
+
+*Bukti Transfer Terlampir.*
+
+Jazakumullahu Khairan Katsiran.`;
+
+                const encodedMessage = encodeURIComponent(message);
+                waLinkEl.href = `https://wa.me/${CONFIG.phoneNumber}?text=${encodedMessage}`;
+            } else {
+                const defaultMessage = `Assalamu'alaikum Warahmatullahi Wabarakatuh, Admin Griya Huffazh Quran.
+
+Saya ingin mengonfirmasi Wakaf Pembebasan Lahan.
+
+*Bukti Transfer Terlampir.*
+
+Jazakumullahu Khairan Katsiran.`;
+                waLinkEl.href = `https://wa.me/${CONFIG.phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>

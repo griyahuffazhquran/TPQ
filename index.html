@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wakaf pembebasan lahan untuk Griya Huffazh Quran - Lahirkan ribuan penghafal Al-Qur'an">
+    <meta name="theme-color" content="#047857">
+    
+    <title>Wakaf Pembebasan Lahan - Griya Huffazh Qur'an</title>
+    
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <!-- Fonts & Libraries -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth; 
+        }
+        
+        .progress-gradient {
+            background: linear-gradient(to right, #10b981, #059669, #047857);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes pulse-soft {
+            0% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(5, 150, 105, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+        }
+        
+        .floating-action {
+            animation: pulse-soft 2s infinite;
+        }
+        
+        .focus-ring:focus-visible {
+            outline: 3px solid #059669;
+            outline-offset: 2px;
+        }
+        
+        /* Hide number input spinners */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        
+        /* Safe area for floating button */
+        .bottom-safe-area {
+            padding-bottom: 100px;
+        }
+        
+        @media (min-width: 768px) {
+            .bottom-safe-area {
+                padding-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 overflow-x-hidden">
+
+    <!-- Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-emerald-700 text-white px-4 py-2 rounded-lg z-[200]">
+        Langsung ke konten utama
+    </a>
+
+    <!-- Navigasi -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-emerald-50 shadow-sm" role="navigation">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <img src="favicon.png" alt="Logo Griya Huffazh" class="w-10 h-10 rounded-full object-cover">
+                    <span class="text-xl font-bold text-emerald-900 tracking-tight">Griya Huffazh Quran</span>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#progres" class="text-sm font-semibold text-slate-600 hover:text-emerald-700 uppercase tracking-wider transition-colors focus-ring rounded-lg px-2 py-1">
+                        Progres
+                    </a>
+                    <a href="#wakaf-sekarang" class="bg-emerald-700 text-white px-6 py-2.5 rounded-full font-bold hover:bg-emerald-800 transition-all active:scale-95 focus-ring">
+                        Wakaf Sekarang
+                    </a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 focus-ring" aria-label="Buka menu navigasi" aria-expanded="false">
+                    <i data-lucide="menu" class="w-6 h-6 text-slate-700"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#progres" class="block py-3 text-slate-600 font-medium hover:text-emerald-700">Progres</a>
+                <a href="#wakaf-sekarang" class="block py-3 text-emerald-700 font-bold">Wakaf Sekarang</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="relative pt-12 pb-32 overflow-hidden bg-gradient-to-b from-emerald-50/50 to-white" aria-labelledby="hero-heading">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="flex flex-col items-center text-center relative z-10">
+                    
+                    <div data-aos="fade-down" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-black uppercase tracking-[0.2em] mb-8 shadow-sm">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                        </span>
+                        Darurat Pembebasan Lahan
+                    </div>
+                    
+                    <h1 id="hero-heading" data-aos="fade-up" data-aos-delay="100" class="text-4xl md:text-6xl font-black text-slate-900 leading-[1.15] mb-8 max-w-4xl">
+                        Abadikan Harta Anda di Tanah <br />
+                        <span class="text-emerald-700 underline decoration-amber-400 decoration-wavy underline-offset-8">Para Penghafal Al-Qur'an</span>
+                    </h1>
+                    
+                    <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-slate-600 mb-12 max-w-2xl leading-relaxed">
+                        Jadilah bagian dari pembebasan lahan seluas 1.000m² yang akan menjadi pusat lahirnya ribuan Huffazh.
+                    </p>
+
+                    <!-- Kartu Progres -->
+                    <div data-aos="zoom-in-up" data-aos-delay="300" class="w-full max-w-3xl glass-card rounded-[2.5rem] shadow-2xl shadow-emerald-900/10 border border-emerald-100 relative overflow-visible" role="region" aria-label="Progress pengumpulan dana">
+                        
+                        <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-emerald-700 text-white px-8 py-3 rounded-2xl font-black shadow-xl whitespace-nowrap z-30 text-sm md:text-base">
+                            TARGET: RP 950.000.000
+                        </div>
+                        
+                        <div class="p-8 md:p-12 pt-14 relative z-10">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 text-center md:text-left border-b border-slate-100 pb-8">
+                                <div>
+                                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs mb-2">Terkumpul</p>
+                                    <p class="text-3xl md:text-4xl font-black text-emerald-700">Rp 427.500.000</p>
+                                </div>
+                                <div class="md:text-right">
+                                    <p class="text-slate-400 font-bold uppercase tracking-widest text-xs mb-2">Kekurangan Dana</p>
+                                    <p class="text-3xl md:text-4xl font-black text-slate-500">Rp 522.500.000</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-end mb-2">
+                                    <span class="text-emerald-800 font-black text-xl">45% <span class="text-sm font-bold text-slate-400 uppercase tracking-tighter ml-1">Tercapai</span></span>
+                                    <span class="flex items-center gap-1.5 text-slate-500 font-bold text-sm">
+                                        <i data-lucide="users" class="w-4 h-4 text-emerald-600"></i> 1.240 Pewakaf
+                                    </span>
+                                </div>
+                                <div class="w-full h-5 bg-slate-100 rounded-full overflow-hidden p-1 shadow-inner" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-label="Progress pengumpulan 45%">
+                                    <div class="h-full progress-gradient rounded-full w-[45%] transition-all duration-1000"></div>
+                                </div>
+                            </div>
+
+                            <div class="mt-10">
+                                <a href="#wakaf-sekarang" class="w-full py-5 bg-emerald-700 text-white rounded-2xl font-black text-xl hover:bg-emerald-800 transition-all shadow-xl shadow-emerald-200 flex items-center justify-center gap-3 active:scale-95 focus-ring">
+                                    Pilih Paket Wakaf <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Misi Section -->
+        <section id="progres" class="py-24 bg-white bottom-safe-area">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">Misi Pembebasan Lahan</h2>
+                    <div class="w-24 h-2 bg-emerald-600 mx-auto rounded-full"></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <article class="p-8 rounded-[2rem] bg-emerald-50 border border-emerald-100 hover-lift" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="map" class="w-7 h-7 text-emerald-700"></i>
+                        </div>
+                        <h3 class="text-xl font-black mb-3">Luas 1.000 m²</h3>
+                        <p class="text-slate-600 leading-relaxed">Terletak di area strategis yang tenang, sangat kondusif untuk menghafal Al-Qur'an.</p>
+                    </article>
+                    
+                    <article class="p-8 rounded-[2rem] bg-amber-50 border border-amber-100 hover-lift" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="home" class="w-7 h-7 text-amber-700"></i>
+                        </div>
+                        <h3 class="text-xl font-black mb-3">Asrama Permanen</h3>
+                        <p class="text-slate-600 leading-relaxed">Memberikan tempat tinggal yang layak dan aman bagi para santri yatim & dhuafa.</p>
+                    </article>
+                    
+                    <article class="p-8 rounded-[2rem] bg-blue-50 border border-blue-100 hover-lift" data-aos="fade-up" data-aos-delay="300">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                            <i data-lucide="infinity" class="w-7 h-7 text-blue-700"></i>
+                        </div>
+                        <h3 class="text-xl font-black mb-3">Pahala Mengalir</h3>
+                        <p class="text-slate-600 leading-relaxed">Setiap ayat yang dihafal di atas tanah ini menjadi pahala jariyah yang tak terputus.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Section -->
+        <section id="wakaf-sekarang" class="py-24 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-black text-slate-900 mb-4">Pilih Paket Wakaf</h2>
+                    <p class="text-slate-500 font-medium">Estimasi nilai per meter: Rp 1.000.000,-</p>
+                </div>
+
+                <!-- Perbaikan: Menambahkan aria-label dan role yang benar -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12" role="radiogroup" aria-label="Pilihan nominal wakaf">
+                    <button onclick="selectPacket(250000, this)" class="packet-btn bg-white p-6 md:p-8 rounded-[2rem] border-2 border-slate-200 text-slate-600 hover:border-emerald-300 transition-all text-center flex flex-col items-center shadow-sm focus-ring" role="radio" aria-checked="false" data-amount="250000">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-2 text-slate-400">1/4 Meter</h4>
+                        <p class="text-xl md:text-2xl font-black">Rp 250.000</p>
+                    </button>
+                    
+                    <button onclick="selectPacket(500000, this)" class="packet-btn bg-white p-6 md:p-8 rounded-[2rem] border-2 border-slate-200 text-slate-600 hover:border-emerald-300 transition-all text-center flex flex-col items-center shadow-sm focus-ring" role="radio" aria-checked="false" data-amount="500000">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-2 text-slate-400">1/2 Meter</h4>
+                        <p class="text-xl md:text-2xl font-black">Rp 500.000</p>
+                    </button>
+                    
+                    <button onclick="selectPacket(1000000, this)" class="packet-btn bg-white p-6 md:p-8 rounded-[2rem] border-2 border-slate-200 text-slate-600 hover:border-emerald-300 transition-all text-center flex flex-col items-center shadow-sm focus-ring" role="radio" aria-checked="false" data-amount="1000000">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-2 text-slate-400">1 Meter</h4>
+                        <p class="text-xl md:text-2xl font-black">Rp 1.000.000</p>
+                    </button>
+                    
+                    <button onclick="selectPacket(2000000, this)" class="packet-btn bg-white p-6 md:p-8 rounded-[2rem] border-2 border-slate-200 text-slate-600 hover:border-emerald-300 transition-all text-center flex flex-col items-center shadow-sm focus-ring" role="radio" aria-checked="false" data-amount="2000000">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-2 text-slate-400">2 Meter</h4>
+                        <p class="text-xl md:text-2xl font-black">Rp 2.000.000</p>
+                    </button>
+                </div>
+
+                <div class="max-w-2xl mx-auto bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-100">
+                    <div class="mb-8">
+                        <label for="custom-amount" class="block font-black text-slate-800 text-lg mb-4 text-center">
+                            Nominal Custom (Rp)
+                        </label>
+                        <div class="relative">
+                            <span class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-lg">Rp</span>
+                            <input type="text" id="custom-amount" inputmode="numeric" placeholder="Masukkan jumlah donasi..." class="w-full text-center py-5 pl-14 pr-5 bg-slate-50 border-2 border-slate-100 rounded-2xl focus:border-emerald-700 outline-none text-2xl font-black text-emerald-700 transition-all focus-ring" aria-describedby="amount-help" autocomplete="off">
+                        </div>
+                        <p id="amount-help" class="text-center text-slate-400 text-sm mt-2">Minimum donasi: Rp 10.000</p>
+                        <p id="amount-error" class="text-center text-red-500 text-sm mt-2 hidden" role="alert"></p>
+                    </div>
+                    
+                    <button type="button" onclick="processDonation()" id="donate-btn" class="w-full py-5 bg-emerald-700 text-white rounded-2xl font-black text-xl hover:bg-emerald-800 transition-all shadow-lg active:scale-95 flex items-center justify-center gap-3 focus-ring disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span id="btn-text">Wakaf Sekarang</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6" id="btn-icon"></i>
+                        <span id="btn-loader" class="hidden">
+                            <svg class="animate-spin h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-16 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <img src="favicon.png" alt="Logo Griya Huffazh" class="w-8 h-8 rounded-full object-cover">
+                <span class="text-lg font-bold">Griya Huffazh Quran</span>
+            </div>
+            <p class="text-slate-400 text-sm mb-2">Panitia Pembebasan Lahan</p>
+            <p class="text-slate-500 text-xs">&copy; 2024 Griya Huffazh Quran. Seluruh hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Button -->
+    <div class="fixed bottom-6 left-0 right-0 z-[100] px-4 flex justify-center pointer-events-none">
+        <div class="bg-white/80 backdrop-blur-xl px-2 py-2 rounded-full border border-white/40 shadow-2xl pointer-events-auto">
+            <a href="#wakaf-sekarang" class="floating-action flex items-center gap-3 bg-emerald-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-black text-base md:text-lg hover:bg-emerald-800 hover:scale-105 active:scale-95 transition-all shadow-lg group focus-ring">
+                <i data-lucide="heart" class="w-5 h-5 md:w-6 md:h-6 fill-white group-hover:scale-125 transition-transform"></i>
+                <span class="whitespace-nowrap">Wakaf Sekarang!</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="error-toast" class="fixed top-4 right-4 bg-red-500 text-white px-6 py-4 rounded-2xl shadow-xl z-[200] transform translate-x-full transition-transform duration-300" role="alert" aria-live="polite">
+        <div class="flex items-center gap-3">
+            <i data-lucide="alert-circle" class="w-5 h-5"></i>
+            <span id="toast-message">Terjadi kesalahan</span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
+        lucide.createIcons();
+
+        const MIN_DONATION = 10000;
+        const MAX_DONATION = 1000000000;
+        const DONATION_PAGE = 'wakaf.html';
+        let selectedAmount = 0;
+
+        function formatRupiah(num) {
+            if (isNaN(num) || num === null) return '';
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        function parseRupiah(str) {
+            if (!str) return 0;
+            return parseInt(str.replace(/\D/g, ''), 10) || 0;
+        }
+
+        function validateAmount(amount) {
+            if (!amount || amount === 0) return { valid: false, message: 'Silakan pilih atau masukkan nominal donasi' };
+            if (amount < MIN_DONATION) return { valid: false, message: 'Minimum donasi adalah Rp 10.000' };
+            if (amount > MAX_DONATION) return { valid: false, message: 'Nominal melebihi batas maksimum' };
+            return { valid: true, message: '' };
+        }
+
+        function showToast(message, type = 'error') {
+            const toast = document.getElementById('error-toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toast.classList.remove('bg-emerald-500', 'bg-red-500');
+            toast.classList.add(type === 'error' ? 'bg-red-500' : 'bg-emerald-500');
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-x-full');
+            
+            setTimeout(() => toast.classList.add('translate-x-full'), 4000);
+        }
+
+        function setButtonLoading(loading) {
+            const btn = document.getElementById('donate-btn');
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
+            const btnLoader = document.getElementById('btn-loader');
+            
+            btn.disabled = loading;
+            
+            if (loading) {
+                btnText.textContent = 'Memproses...';
+                btnIcon.classList.add('hidden');
+                btnLoader.classList.remove('hidden');
+            } else {
+                btnText.textContent = 'Wakaf Sekarang';
+                btnIcon.classList.remove('hidden');
+                btnLoader.classList.add('hidden');
+            }
+        }
+
+        function selectPacket(amount, btn) {
+            // Reset semua tombol
+            document.querySelectorAll('.packet-btn').forEach(b => {
+                b.classList.remove('bg-emerald-700', 'text-white', 'border-emerald-700');
+                b.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                b.setAttribute('aria-checked', 'false');
+            });
+            
+            // Aktifkan tombol yang dipilih
+            btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+            btn.classList.add('bg-emerald-700', 'text-white', 'border-emerald-700');
+            btn.setAttribute('aria-checked', 'true');
+            
+            selectedAmount = amount;
+            document.getElementById('custom-amount').value = formatRupiah(amount);
+            document.getElementById('amount-error').classList.add('hidden');
+        }
+
+        function processDonation() {
+            const input = document.getElementById('custom-amount');
+            const amount = parseRupiah(input.value);
+            const validation = validateAmount(amount);
+            
+            if (!validation.valid) {
+                const errorEl = document.getElementById('amount-error');
+                errorEl.textContent = validation.message;
+                errorEl.classList.remove('hidden');
+                input.focus();
+                return;
+            }
+            
+            setButtonLoading(true);
+            
+            try {
+                sessionStorage.setItem('wakaf_amount', amount.toString());
+            } catch (e) {
+                console.warn('SessionStorage tidak tersedia:', e);
+            }
+            
+            setTimeout(() => {
+                window.location.href = `${DONATION_PAGE}?amount=${encodeURIComponent(amount)}`;
+            }, 500);
+        }
+
+        // Event Listener Input
+        document.getElementById('custom-amount').addEventListener('input', function(e) {
+            const cursorPos = e.target.selectionStart;
+            const oldLength = e.target.value.length;
+            const value = parseRupiah(e.target.value);
+            
+            if (value > 0) {
+                e.target.value = formatRupiah(value);
+                selectedAmount = value;
+            } else {
+                e.target.value = '';
+                selectedAmount = 0;
+            }
+            
+            const newLength = e.target.value.length;
+            e.target.setSelectionRange(cursorPos + (newLength - oldLength), cursorPos + (newLength - oldLength));
+            
+            document.getElementById('amount-error').classList.add('hidden');
+            
+            // Jika user manual input, reset style tombol
+            if (e.target.value) {
+                document.querySelectorAll('.packet-btn').forEach(b => {
+                    const btnAmount = parseInt(b.dataset.amount, 10);
+                    if (btnAmount !== value) {
+                        b.classList.remove('bg-emerald-700', 'text-white', 'border-emerald-700');
+                        b.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+                        b.setAttribute('aria-checked', 'false');
+                    }
+                });
+            }
+        });
+
+        document.getElementById('custom-amount').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                processDonation();
+            }
+        });
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            const isHidden = menu.classList.contains('hidden');
+            
+            menu.classList.toggle('hidden');
+            this.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+            
+            const icon = this.querySelector('i');
+            icon.setAttribute('data-lucide', isHidden ? 'x' : 'menu');
+            lucide.createIcons();
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+                document.getElementById('mobile-menu-btn').setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Check URL params on load
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlAmount = urlParams.get('amount');
+        if (urlAmount) {
+            const amount = parseInt(urlAmount, 10);
+            if (!isNaN(amount) && amount > 0) {
+                document.getElementById('custom-amount').value = formatRupiah(amount);
+                selectedAmount = amount;
+            }
+        }
+    </script>
+</body>
+</html>
